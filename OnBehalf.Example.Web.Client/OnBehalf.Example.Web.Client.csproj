@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-OnBehalf.Example.Web.Client-af31b7be-b565-479b-9131-6e0bfe896cf2</UserSecretsId>
+    <WebProject_DirectoryAccessLevelKey>1</WebProject_DirectoryAccessLevelKey>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" Version="3.1.4" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.16.1" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="0.2.0-preview" />
+  </ItemGroup>
+
+</Project>
