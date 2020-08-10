@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -28,20 +29,24 @@ namespace OnBehalf.Example.Web.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            if (!User.Claims.First(x => x.Type.Equals(scopeClaimType)).Value.Equals(scope))
+            if (!User.Claims.First(x => x.Type.Equals(scopeClaimType))
+                .Value.Equals(scope) || !User.Claims.First(x => x.Type.Equals("aud"))
+                .Value.Equals("642b4ac0-ccc4-4e02-a626-47c24531820e"))
             {
                 return Unauthorized();
             }
 
-
             var rng = new Random();
-            return Ok(Enumerable.Range(1, 5).Select(index => new WeatherForecast
-                {
-                    Date = DateTime.Now.AddDays(index),
-                    TemperatureC = rng.Next(-20, 55),
-                    Summary = Summaries[rng.Next(Summaries.Length)]
-                })
-                .ToArray());
+            return Ok(
+                Enumerable.Range(1, 5)
+                    .Select(
+                        index => new WeatherForecast
+                        {
+                            Date = DateTime.Now.AddDays(index),
+                            TemperatureC = rng.Next(-20, 55),
+                            Summary = Summaries[rng.Next(Summaries.Length)]
+                        })
+                    .ToArray());
         }
     }
 }
