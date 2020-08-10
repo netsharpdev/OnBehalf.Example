@@ -25,7 +25,7 @@ namespace OnBehalf.Example.Web.Client
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMicrosoftWebAppAuthentication(Configuration)
-                .AddMicrosoftWebAppCallsWebApi(Configuration, new List<string>() {"642b4ac0-ccc4-4e02-a626-47c24531820e/Weather.Read"})
+                .AddMicrosoftWebAppCallsWebApi(Configuration, new List<string>() { "api://642b4ac0-ccc4-4e02-a626-47c24531820e/Weather.Read" })
                 .AddInMemoryTokenCaches();
 
             services.AddControllersWithViews(options =>

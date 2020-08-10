@@ -25,7 +25,7 @@ namespace OnBehalf.Example.Web.Client.Handlers
 
         public async Task RequestUserDataOnBehalfOfAuthenticatedUser(HttpContext context)
         {
-            var scopes = new List<string> { $"642b4ac0-ccc4-4e02-a626-47c24531820e/Weather.Read" };
+            var scopes = new List<string> { $"api://642b4ac0-ccc4-4e02-a626-47c24531820e/Weather.Read" };
             try
             {
                 var token = await _tokenAcquisition.GetAccessTokenForUserAsync(scopes);
